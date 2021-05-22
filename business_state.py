@@ -10,8 +10,13 @@ class Model:
         self.__balance = balance
 
     def next_stage(self, assumptions: StageAssumptions):
+        self.__balance.check()
         self.__stage += 1
         self.__assumptions = assumptions
 
     def next_year(self):
         self.__year += 1
+        #
+        # some events
+        #
+        self.__balance.check()
