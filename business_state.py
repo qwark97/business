@@ -1,16 +1,15 @@
 from business.assumptions import StageAssumptions
-from business.balance import Balance
+from business.balance import Assets
 
 
 class Model:
-    def __init__(self, balance: Balance, assumptions: StageAssumptions):
+    def __init__(self, balance: Assets, assumptions: StageAssumptions):
         self.__stage = 1
         self.__year = 0
         self.__assumptions = assumptions
         self.__balance = balance
 
     def next_stage(self, assumptions: StageAssumptions):
-        self.__balance.check()
         self.__stage += 1
         self.__assumptions = assumptions
 
@@ -19,4 +18,3 @@ class Model:
         #
         # some events
         #
-        self.__balance.check()

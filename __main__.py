@@ -1,5 +1,5 @@
 from business.assumptions import StageAssumptions
-from business.balance import Balance, Assets, Liabilities
+from business.balance import Assets
 from business.business_state import Model
 
 
@@ -40,12 +40,7 @@ def run():
     initial_assets = Assets(
         # TODO
     )
-    initial_liabilities = Liabilities(
-        # TODO
-    )
-    initial_balance = Balance(initial_assets, initial_liabilities)
-    initial_balance.check()
-    m = Model(initial_balance, first_stage_assumptions)
+    m = Model(initial_assets, first_stage_assumptions)
     for _ in range(3):
         m.next_year()
 
