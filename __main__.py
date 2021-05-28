@@ -37,20 +37,21 @@ def run():
         unexpected_costs_number=(10000, 1000),
         fixed_costs_number=(20000, 1000),
     )
-    initial_assets = Assets(
-        # TODO
-    )
+    initial_assets = Assets(money=7000, machinery=5000)
     m = Model(initial_assets, first_stage_assumptions)
-    for _ in range(3):
-        m.next_year()
-
+    print("stage:", 1)
+    for i in range(3):
+        print("\t", i+1, m.next_year())
+    glob_i = i+1
     m.next_stage(second_stage_assumptions)
-    for _ in range(5):
-        m.next_year()
-
+    print("stage:", 2)
+    for i in range(5):
+        print("\t", glob_i+i+1, m.next_year())
+    glob_i += i+1
     m.next_stage(third_stage_assumptions)
-    for _ in range(7):
-        m.next_year()
+    print("stage:", 3)
+    for i in range(7):
+        print("\t", glob_i+i+1, m.next_year())
 
 
 if __name__ == '__main__':
