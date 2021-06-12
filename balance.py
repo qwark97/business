@@ -23,10 +23,10 @@ class Assets:
     def unpaid_income(self, amount: float):
         self.money -= self._outcome(amount)
 
-    def substract_fixed_costs(self, amount: float):
+    def subtract_fixed_costs(self, amount: float):
         self.money -= self._outcome(amount)
 
-    def substract_tax(self, amount: float):
+    def subtract_tax(self, amount: float):
         self.money -= self._outcome(amount)
 
     def natural_machinery_loss(self, percentage: float):
