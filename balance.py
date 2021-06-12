@@ -36,11 +36,8 @@ class Assets:
     def natural_machinery_loss(self, percentage: float):
         # wyliczenie naturalnej straty polega na pomniejszeniu wartości wyposażenia
         # o wskazaną wartość procentową
-        value_percentage_left = 100 - percentage
-        left = self.machinery * (value_percentage_left / 100)
-        loss = self.machinery - left
-        self._outcome(loss)
-        self.machinery = left
+        loss = self.machinery * (percentage / 100)
+        self.machinery -= self._outcome(loss)
 
     def unexpected_loss(self, probability: float, cost: float):
         # akcja niespodziewanej straty składa się z dwóch kroków:
