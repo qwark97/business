@@ -15,18 +15,26 @@ class Model:
 
     def next_year(self):
         self.__year += 1
-        # zarobienie hajsu
-        promised_income = self._count_income()
-        real_income = self._subtract_unpaid(promised_income)
-        income = real_income - self.__assumptions.fixed_costs_number
-        profit = self._tax(income)
+        money_at_the_beginning = self.__assets.money
 
-        self.__assets.add_earnings(profit)
+        promised_income = self._count_income()
+        self.__assets.add_earnings(promised_income)
+
+        unpaid_loss = self._unpaid(promised_income)
+        self.__assets.unpaid_income(unpaid_loss)
+
+        self.__assets.substract_fixed_costs(self.__assumptions.fixed_costs_number)
+
+        tax = self._tax(max(self.__assets.money - money_at_the_beginning, 0))
+        self.__assets.substract_tax(tax)
+
         # minus naturalna strata
         self.__assets.natural_machinery_loss(self.__assumptions.natural_loss_percentage)
         # minus koszty niespodziewane
         self.__assets.unexpected_loss(self.__assumptions.unexpected_cost_probability_percentage, self.__assumptions.unexpected_costs_number)
-        return self.__assets.sum_up()
+        yearly_income, yearly_outcome = self.__assets.get_cash_flow()
+        self.__assets.new_year()
+        return self.__assets.sum_up(), yearly_income, yearly_outcome
 
     def _count_income(self) -> float:
         income = 0
@@ -35,13 +43,11 @@ class Model:
             income += self.__assumptions.average_income_per_client_number * (self.__assumptions.average_margin_per_client_percentage / 100)
         return income
 
-    def _subtract_unpaid(self, promised_income: float) -> float:
-        paid_percentage = 100 - self.__assumptions.lost_income_percentage
-        return promised_income * (paid_percentage / 100)
+    def _unpaid(self, promised_income: float) -> float:
+        return promised_income * (self.__assumptions.lost_income_percentage / 100)
 
     def _tax(self, income):
-        percentage_left_after_taxation = 100 - self.__assumptions.yearly_tax_percentage
-        return income * (percentage_left_after_taxation / 100)
+        return income * (self.__assumptions.yearly_tax_percentage / 100)
 
 
 
