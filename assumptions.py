@@ -29,6 +29,13 @@ class StageAssumptions:
         self.__fixed_costs_number = fixed_costs_number
         self.__investment_rate_percentage = investment_rate_percentage
 
+    # Wszystkie poniższe wartości (z wyjątkiem stawki podatku), dla każdego ich użycia wyliczają swoją wartość
+    # na dany moment. Uzyskanie tejże polega na wzięciu wartości przekazanej w ramach konstruktora z uwzględnieniem
+    # wartości odchylenia standardowego, które również jest przekazywane w ramach inicjalizacji obiektu. W ten sposób
+    # każde wykorzystanie pozwala zasymulować zmienność systemu
+    # Stawka podatku jest tutaj wyjątkiem - ona zawsze jest zgodna z wartością przekazaną w ramach konstruktora bez
+    # żadnych modyfikacji (z wyjątkiem przekazania wartości mniejszej od 0, wtedy stawka podatku wynosi 0)
+
     @property
     def lost_income_percentage(self):
         return max(normal(*self.__lost_income_percentage), 0)
