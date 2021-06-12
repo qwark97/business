@@ -40,7 +40,7 @@ def run():
         fixed_costs_number=(20000, 1000),
         investment_rate_percentage=(10, 2),
     )
-    initial_assets = Assets(money=7000, machinery=5000)
+    initial_assets = Assets(money=35000, machinery=15000)
     m = Model(initial_assets, first_stage_assumptions)
     print("stage:", 1)
     for i in range(3):
