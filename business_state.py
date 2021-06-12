@@ -75,10 +75,3 @@ class Model:
     def _tax(self, income):
         # kwota podatku to dochód razy stawka zgodna z przyjętą roczną stawką podatku dla danego roku na danym etapie
         return income * (self.__assumptions.yearly_tax_percentage / 100)
-
-
-
-
-
-
-
