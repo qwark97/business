@@ -14,11 +14,12 @@ class Assets:
     def add_earnings(self, amount: float):
         self.money += self._income(amount)
 
-    def invest(self, amount):
-        if amount > self.money:
-            raise Exception(f"Not enough money: {self.money} < {amount}")
-        self.money -= amount
-        self.machinery += amount
+    def invest(self, percentage_of_money: float):
+        percentage_of_money = max(percentage_of_money, 0)
+        if self.money > 0:
+            investment = self.money * percentage_of_money / 100
+            self.money -= self._outcome(investment)
+            self.machinery += investment
 
     def unpaid_income(self, amount: float):
         self.money -= self._outcome(amount)
