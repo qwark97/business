@@ -16,6 +16,7 @@ class StageAssumptions:
                  unexpected_cost_probability_percentage:    (int, int),
                  unexpected_costs_number:                   (float, int),
                  fixed_costs_number:                        (float, int),
+                 investment_rate_percentage:                (float, int),
                  ):
         self.__lost_income_percentage = lost_income_percentage  # due to unpaid debts
         self.__natural_loss_percentage = natural_loss_percentage  # due to natural events such as exploration
@@ -26,6 +27,7 @@ class StageAssumptions:
         self.__unexpected_cost_probability_percentage = unexpected_cost_probability_percentage
         self.__unexpected_costs_number = unexpected_costs_number
         self.__fixed_costs_number = fixed_costs_number
+        self.__investment_rate_percentage = investment_rate_percentage
 
     @property
     def lost_income_percentage(self):
@@ -62,3 +64,7 @@ class StageAssumptions:
     @property
     def fixed_costs_number(self):
         return max(normal(*self.__fixed_costs_number), 0)
+
+    @property
+    def investment_rate_percentage(self):
+        return max(normal(*self.__investment_rate_percentage), 0)

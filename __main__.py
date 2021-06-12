@@ -14,6 +14,7 @@ def run():
         unexpected_cost_probability_percentage=(3, 10),
         unexpected_costs_number=(1000, 3000),
         fixed_costs_number=(15000, 1000),
+        investment_rate_percentage=(5, 1),
     )
     second_stage_assumptions = StageAssumptions(
         lost_income_percentage=(6, 2),
@@ -25,6 +26,7 @@ def run():
         unexpected_cost_probability_percentage=(3, 5),
         unexpected_costs_number=(1500, 2000),
         fixed_costs_number=(17000, 1000),
+        investment_rate_percentage=(10, 1),
     )
     third_stage_assumptions = StageAssumptions(
         lost_income_percentage=(7, 1),
@@ -36,6 +38,7 @@ def run():
         unexpected_cost_probability_percentage=(1, 1),
         unexpected_costs_number=(10000, 1000),
         fixed_costs_number=(20000, 1000),
+        investment_rate_percentage=(10, 2),
     )
     initial_assets = Assets(money=7000, machinery=5000)
     m = Model(initial_assets, first_stage_assumptions)
