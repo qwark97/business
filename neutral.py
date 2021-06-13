@@ -1,3 +1,5 @@
+import pandas as pd
+
 from business.assumptions import StageAssumptions
 from business.balance import Assets
 from business.business_state import Model
@@ -57,7 +59,13 @@ def run_neutral():
         m.next_year()
         state.save()
 
+    res = []
     print_header()
     for row in DATABASE:
         print_row(row)
+        sub_res = {}
+        for k, v in row.items():
+            sub_res[k] = round(v, 2)
+        res.append(sub_res)
     create_plot(DATABASE, "neutral")
+    pd.DataFrame(res).to_csv("neutral.csv")
