@@ -15,7 +15,7 @@ def run_negative():
         yearly_tax_percentage=20,
         unexpected_cost_probability_percentage=(10, 10),
         unexpected_costs_number=(1000, 3000),
-        fixed_costs_number=(15000, 500),
+        fixed_costs_number=(15000, 1000),
         investment_rate_percentage=(5, 1),
     )
     second_stage_assumptions = StageAssumptions(
@@ -27,12 +27,12 @@ def run_negative():
         yearly_tax_percentage=30,
         unexpected_cost_probability_percentage=(10, 10),
         unexpected_costs_number=(1000, 3000),
-        fixed_costs_number=(25000, 1000),
+        fixed_costs_number=(15000, 1000),
         investment_rate_percentage=(10, 3),
     )
     third_stage_assumptions = StageAssumptions(
         clients_number=(15, 5),
-        average_income_per_client_number=(25000, 5000),
+        average_income_per_client_number=(20000, 5000),
         average_margin_per_client_percentage=(20, 5),
         lost_income_percentage=(5, 1),
         natural_loss_percentage=(9, 1),
